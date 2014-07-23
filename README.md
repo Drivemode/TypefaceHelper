@@ -10,7 +10,7 @@ but there's no way to set the typeface as a styled theme to apply the typeface f
 This library helps to do it in easy way :)
 
 And there's also a serious bug that creating typeface from asset resource will cause memory leak ([See this link](https://code.google.com/p/android/issues/detail?id=9904) for more details),
-this library will also take care about this problem.
+this library will take care about this problem as well.
 
 ## How to use
 
@@ -60,7 +60,7 @@ public class MyActivity extends Activity {
     setContentView(R.layout.activity_main);
 
     LinearLayout container = (LinearLayout) findViewById(R.id.text_container);
-    TypefaceHelper.getInstance().setTypeface(hello, "font/font_file.ttf");
+    TypefaceHelper.getInstance().setTypeface(container, "font/font_file.ttf");
   }
 }
 ```
