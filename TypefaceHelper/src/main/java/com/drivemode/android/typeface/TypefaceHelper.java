@@ -2,6 +2,7 @@ package com.drivemode.android.typeface;
 
 import android.app.Application;
 import android.content.Context;
+import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.support.annotation.LayoutRes;
 import android.util.Log;
@@ -113,6 +114,16 @@ public final class TypefaceHelper {
 			}
 			setTypeface((TextView) child, typefaceName, style);
 		}
+	}
+
+	/**
+	 * Set the typeface to the target paint.
+	 * @param paint the set typeface.
+	 * @param typefaceName typeface name.
+	 */
+	public void setTypeface(Paint paint, String typefaceName) {
+        Typeface typeface = mCache.get(typefaceName);
+		paint.setTypeface(typeface);
 	}
 
 	/**
