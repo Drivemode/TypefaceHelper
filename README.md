@@ -95,3 +95,7 @@ under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
 CONDITIONS OF ANY KIND, either express or implied. See the License for the
 specific language governing permissions and limitations under the License.
 ```
+
+And the sample app uses the following font under [OFL](http://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL).
+
+- [Isserley](http://openfontlibrary.org/en/font/isserley)

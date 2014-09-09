@@ -1,1 +1,1 @@
-include ':TypefaceHelper'
+include ':TypefaceHelper', ':sample'
