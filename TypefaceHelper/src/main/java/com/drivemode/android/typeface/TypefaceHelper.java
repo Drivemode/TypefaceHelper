@@ -3,6 +3,7 @@ package com.drivemode.android.typeface;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Application;
+import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Build;
@@ -259,5 +260,24 @@ public final class TypefaceHelper {
 		} else if (root instanceof ViewGroup) {
 			setTypeface((ViewGroup) root, typefaceName, style);
 		}
+	}
+
+	/**
+	 * Set the typeface for the dialog view.
+	 * @param dialog the dialog.
+	 * @param typefaceName typeface name.
+	 */
+	public <D extends Dialog> void setTypeface(D dialog, String typefaceName) {
+		setTypeface(dialog, typefaceName, 0);
+	}
+
+	/**
+	 * Set the typeface for the dialog view.
+	 * @param dialog the dialog.
+	 * @param typefaceName typeface name.
+	 * @param style the typeface style.
+	 */
+	public <D extends Dialog> void setTypeface(D dialog, String typefaceName, int style) {
+		DialogUtils.setTypeface(this, dialog, typefaceName, style);
 	}
 }
