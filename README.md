@@ -72,12 +72,25 @@ public class MyActivity extends Activity {
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(TypefaceHelper.setTypeface(this, R.layout.activity_main, "font/font_file.ttf"));
+    setContentView(TypefaceHelper.getInstance().setTypeface(this, R.layout.activity_main, "font/font_file.ttf"));
   }
 }
 ```
 
 Nice and easy!
+
+You can apply the typeface to your whole window like this.
+
+```java
+public class MyActivity extends Activity {
+  @Override
+  public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.layout_activity_main);
+    TypefaceHelper.getInstance().setTypeface(this, "font/font_file.ttf");
+  }
+}
+```
 
 ## License
 
