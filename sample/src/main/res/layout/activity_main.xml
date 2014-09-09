@@ -1,4 +1,5 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -15,10 +16,12 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="4dp"/>
     <LinearLayout
+        android:id="@+id/samples"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/hello_world"
         android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
         android:orientation="vertical">
         <TextView
             android:layout_width="match_parent"
@@ -62,5 +65,11 @@
                 android:text="@string/app_name"/>
         </LinearLayout>
     </LinearLayout>
-
+    <ListView
+        android:id="@+id/list_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/samples"
+        android:layout_marginTop="4dp"
+        tools:listitem="@android:layout/simple_list_item_1"/>
 </RelativeLayout>

@@ -5,4 +5,21 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
+    <string-array name="sample_list">
+        <item>Foo</item>
+        <item>Bar</item>
+        <item>Baz</item>
+        <item>Qux</item>
+        <item>Quux</item>
+        <item>Hoge</item>
+        <item>Fuga</item>
+        <item>Piyo</item>
+        <item>Hoge</item>
+        <item>Alice</item>
+        <item>Bob</item>
+        <item>Charlie</item>
+        <item>Dave</item>
+        <item>Ellen</item>
+        <item>Frank</item>
+    </string-array>
 </resources>
