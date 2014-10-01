@@ -92,6 +92,14 @@ public class MyActivity extends Activity {
 }
 ```
 
+## Download
+
+Gradle:
+
+```
+compile 'com.drivemode:TypefaceHelper:1.0.0@aar'
+```
+
 ## License
 
 ```
