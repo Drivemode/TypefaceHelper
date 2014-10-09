@@ -117,16 +117,16 @@ public final class TypefaceHelper {
 	}
 
 	/**
-	 * Set the typeface to the target paint.
-	 * @param paint the set typeface.
-	 * @param typefaceName typeface name.
-	 */
-	public void setTypeface(Paint paint, String typefaceName) {
+     * Set the typeface to the target paint.
+     * @param paint the set typeface.
+     * @param typefaceName typeface name.
+     */
+    public void setTypeface(Paint paint, String typefaceName) {
         Typeface typeface = mCache.get(typefaceName);
-		paint.setTypeface(typeface);
-	}
+        paint.setTypeface(typeface);
+    }
 
-	/**
+    /**
 	 * Set the typeface to the all text views belong to the view group.
 	 * @param context the context.
 	 * @param layoutRes the layout resource id.
