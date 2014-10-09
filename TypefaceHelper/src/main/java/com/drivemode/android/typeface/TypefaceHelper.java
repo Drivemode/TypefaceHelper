@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.Application;
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.support.annotation.LayoutRes;
@@ -130,6 +131,16 @@ public final class TypefaceHelper {
 	}
 
 	/**
+     * Set the typeface to the target paint.
+     * @param paint the set typeface.
+     * @param typefaceName typeface name.
+     */
+    public void setTypeface(Paint paint, String typefaceName) {
+        Typeface typeface = mCache.get(typefaceName);
+        paint.setTypeface(typeface);
+    }
+
+    /**
 	 * Set the typeface to the all text views belong to the view group.
 	 * @param context the context.
 	 * @param layoutRes the layout resource id.
