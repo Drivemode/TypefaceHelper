@@ -1,5 +1,6 @@
 package com.drivemode.android.typeface.sample;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
@@ -7,9 +8,11 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.drivemode.android.typeface.TypefaceHelper;
 
@@ -35,6 +38,17 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
                 View view = super.getView(position, convertView, parent);
                 TypefaceHelper.getInstance().setTypeface((TextView) view, "Isserley-Regular.ttf");
                 return view;
+            }
+        });
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @SuppressLint("ShowToast")
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                TypefaceHelper.getInstance().setTypeface(
+                        Toast.makeText(MainActivity.this.getApplicationContext(),
+                                "pos: " + position,
+                                Toast.LENGTH_LONG),
+                        "Isserley-Regular.ttf").show();
             }
         });
 

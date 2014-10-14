@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Helper class for setting typeface to the text views.
@@ -290,5 +291,27 @@ public final class TypefaceHelper {
 	 */
 	public <D extends Dialog> void setTypeface(D dialog, String typefaceName, int style) {
 		DialogUtils.setTypeface(this, dialog, typefaceName, style);
+	}
+
+	/**
+	 * Set the typeface for the toast view.
+	 * @param toast toast.
+	 * @param typefaceName typeface name.
+	 * @return toast that the typeface is injected.
+	 */
+	public Toast setTypeface(Toast toast, String typefaceName) {
+		return setTypeface(toast, typefaceName, 0);
+	}
+
+	/**
+	 * Set the typeface for the toast view.
+	 * @param toast toast.
+	 * @param typefaceName typeface name.
+	 * @param style the typeface style.
+	 * @return toast that the typeface is injected.
+	 */
+	public Toast setTypeface(Toast toast, String typefaceName, int style) {
+		setTypeface((ViewGroup) toast.getView(), typefaceName, style);
+		return toast;
 	}
 }
