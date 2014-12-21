@@ -1,4 +1,5 @@
 # TypefaceHelper
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-TypefaceHelper-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/1246)
 
 Helper object for injecting typeface into various text views of android.
 
