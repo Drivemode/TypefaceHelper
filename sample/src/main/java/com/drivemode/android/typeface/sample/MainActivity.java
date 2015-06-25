@@ -52,7 +52,8 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             }
         });
 
-        TypefaceHelper.getInstance().setTypeface(this, "Isserley-Regular.ttf");
+        // You can also pass the typeface name stored in a string resource
+        TypefaceHelper.getInstance().setTypeface(this, R.string.font_primary);
     }
 
     @Override

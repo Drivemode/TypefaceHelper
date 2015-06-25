@@ -97,6 +97,19 @@ public class MyActivity extends Activity {
 }
 ```
 
+And... you can also pass the font name as a string resource id:
+
+```java
+public class MyActivity extends Activity {
+  @Override
+  public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.layout_activity_main);
+    TypefaceHelper.getInstance().setTypeface(this, R.string.font_primary);
+  }
+}
+```
+
 ## Download
 
 Gradle:

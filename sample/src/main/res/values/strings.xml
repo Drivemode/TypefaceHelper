@@ -22,4 +22,6 @@
         <item>Ellen</item>
         <item>Frank</item>
     </string-array>
+
+    <string name="font_primary">Isserley-Regular.ttf</string>
 </resources>

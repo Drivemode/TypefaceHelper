@@ -9,6 +9,7 @@ import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.support.annotation.LayoutRes;
+import android.support.annotation.StringRes;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,9 +25,11 @@ import android.widget.Toast;
 public final class TypefaceHelper {
 	public static final String TAG = TypefaceHelper.class.getSimpleName();
 	private static TypefaceHelper sHelper;
+	private final Application mApplication;
 	private final TypefaceCache mCache;
 
 	private TypefaceHelper(Application application) {
+		mApplication = application;
 		mCache = TypefaceCache.getInstance(application);
 	}
 
@@ -77,6 +80,16 @@ public final class TypefaceHelper {
 	/**
 	 * Set the typeface to the target view.
 	 * @param view to set typeface.
+	 * @param strResId string resource containing typeface name.
+	 * @param <V> text view parameter.
+	 */
+	public <V extends TextView> void setTypeface(V view, @StringRes int strResId) {
+		setTypeface(view, mApplication.getString(strResId));
+	}
+
+	/**
+	 * Set the typeface to the target view.
+	 * @param view to set typeface.
 	 * @param typefaceName typeface name.
 	 * @param style the typeface style.
 	 * @param <V> text view parameter.
@@ -84,6 +97,17 @@ public final class TypefaceHelper {
 	public <V extends TextView> void setTypeface(V view, String typefaceName, int style) {
 		Typeface typeface = mCache.get(typefaceName);
 		view.setTypeface(typeface, style);
+	}
+
+	/**
+	 * Set the typeface to the target view.
+	 * @param view to set typeface.
+	 * @param strResId string resource containing typeface name.
+	 * @param style the typeface style.
+	 * @param <V> text view parameter.
+	 */
+	public <V extends TextView> void setTypeface(V view, @StringRes int strResId, int style) {
+		setTypeface(view, mApplication.getString(strResId), style);
 	}
 
 	/**
@@ -112,6 +136,17 @@ public final class TypefaceHelper {
 	 * Set the typeface to the all text views belong to the view group.
 	 * Note that this method recursively trace the child view groups and set typeface for the text views.
 	 * @param viewGroup the view group that contains text views.
+	 * @param strResId string resource containing typeface name.
+	 * @param <V> view group parameter.
+	 */
+	public <V extends ViewGroup> void setTypeface(V viewGroup, @StringRes int strResId) {
+		setTypeface(viewGroup, mApplication.getString(strResId));
+	}
+
+	/**
+	 * Set the typeface to the all text views belong to the view group.
+	 * Note that this method recursively trace the child view groups and set typeface for the text views.
+	 * @param viewGroup the view group that contains text views.
 	 * @param typefaceName typeface name.
 	 * @param style the typeface style.
 	 * @param <V> view group parameter.
@@ -132,6 +167,18 @@ public final class TypefaceHelper {
 	}
 
 	/**
+	 * Set the typeface to the all text views belong to the view group.
+	 * Note that this method recursively trace the child view groups and set typeface for the text views.
+	 * @param viewGroup the view group that contains text views.
+	 * @param strResId string resource containing typeface name.
+	 * @param style the typeface style.
+	 * @param <V> view group parameter.
+	 */
+	public <V extends ViewGroup> void setTypeface(V viewGroup, @StringRes int strResId, int style) {
+		setTypeface(viewGroup, mApplication.getString(strResId), style);
+	}
+
+	/**
      * Set the typeface to the target paint.
      * @param paint the set typeface.
      * @param typefaceName typeface name.
@@ -140,6 +187,15 @@ public final class TypefaceHelper {
         Typeface typeface = mCache.get(typefaceName);
         paint.setTypeface(typeface);
     }
+
+	/**
+	 * Set the typeface to the target paint.
+	 * @param paint the set typeface.
+	 * @param strResId string resource containing typeface name.
+	 */
+	public void setTypeface(Paint paint, @StringRes int strResId) {
+		setTypeface(paint, mApplication.getString(strResId));
+	}
 
     /**
 	 * Set the typeface to the all text views belong to the view group.
@@ -150,6 +206,17 @@ public final class TypefaceHelper {
 	 */
 	public View setTypeface(Context context, @LayoutRes int layoutRes, String typefaceName) {
 		return setTypeface(context, layoutRes, null, typefaceName);
+	}
+
+	/**
+	 * Set the typeface to the all text views belong to the view group.
+	 * @param context the context.
+	 * @param layoutRes the layout resource id.
+	 * @param strResId string resource containing typeface name.
+	 * @return the view.
+	 */
+	public View setTypeface(Context context, @LayoutRes int layoutRes, @StringRes int strResId) {
+		return setTypeface(context, layoutRes, mApplication.getString(strResId));
 	}
 
 	/**
@@ -170,12 +237,36 @@ public final class TypefaceHelper {
 	 * Set the typeface to the all text views belong to the view group.
 	 * @param context the context.
 	 * @param layoutRes the layout resource id.
+	 * @param parent the parent view group to attach the layout.
+	 * @param strResId string resource containing typeface name.
+	 * @return the view.
+	 */
+	public View setTypeface(Context context, @LayoutRes int layoutRes, ViewGroup parent, @StringRes int strResId) {
+		return setTypeface(context, layoutRes, parent, mApplication.getString(strResId));
+	}
+
+	/**
+	 * Set the typeface to the all text views belong to the view group.
+	 * @param context the context.
+	 * @param layoutRes the layout resource id.
 	 * @param typefaceName typeface name.
 	 * @param style the typeface style.
 	 * @return the view.
 	 */
 	public View setTypeface(Context context, @LayoutRes int layoutRes, String typefaceName, int style) {
 		return setTypeface(context, layoutRes, null, typefaceName, 0);
+	}
+
+	/**
+	 * Set the typeface to the all text views belong to the view group.
+	 * @param context the context.
+	 * @param layoutRes the layout resource id.
+	 * @param strResId string resource containing typeface name.
+	 * @param style the typeface style.
+	 * @return the view.
+	 */
+	public View setTypeface(Context context, @LayoutRes int layoutRes, @StringRes int strResId, int style) {
+		return setTypeface(context, layoutRes, mApplication.getString(strResId), 0);
 	}
 
 	/**
@@ -194,6 +285,19 @@ public final class TypefaceHelper {
 	}
 
 	/**
+	 * Set the typeface to the all text views belong to the view group.
+	 * @param context the context.
+	 * @param layoutRes the layout resource id.
+	 * @param parent the parent view group to attach the layout.
+	 * @param strResId string resource containing typeface name.
+	 * @param style the typeface style.
+	 * @return the view.
+	 */
+	public View setTypeface(Context context, @LayoutRes int layoutRes, ViewGroup parent, @StringRes int strResId, int style) {
+		return setTypeface(context, layoutRes, parent, mApplication.getString(strResId), style);
+	}
+
+	/**
 	 * Set the typeface to the all text views belong to the activity.
 	 * Note that we use decor view of the activity so that the typeface will also be applied to action bar.
 	 * @param activity the activity.
@@ -201,6 +305,16 @@ public final class TypefaceHelper {
 	 */
 	public void setTypeface(Activity activity, String typefaceName) {
 		setTypeface(activity, typefaceName, 0);
+	}
+
+	/**
+	 * Set the typeface to the all text views belong to the activity.
+	 * Note that we use decor view of the activity so that the typeface will also be applied to action bar.
+	 * @param activity the activity.
+	 * @param strResId string resource containing typeface name.
+	 */
+	public void setTypeface(Activity activity, @StringRes int strResId) {
+		setTypeface(activity, mApplication.getString(strResId));
 	}
 
 	/**
@@ -215,6 +329,17 @@ public final class TypefaceHelper {
 	}
 
 	/**
+	 * Set the typeface to the all text views belong to the activity.
+	 * Note that we use decor view of the activity so that the typeface will also be applied to action bar.
+	 * @param activity the activity.
+	 * @param strResId string resource containing typeface name.
+	 * @param style the typeface style.
+	 */
+	public void setTypeface(Activity activity, @StringRes int strResId, int style) {
+		setTypeface(activity, mApplication.getString(strResId), style);
+	}
+
+	/**
 	 * Set the typeface to the all text views belong to the fragment.
 	 * Make sure to call this method after fragment view creation.
 	 * If you use fragments in the support package,
@@ -225,6 +350,19 @@ public final class TypefaceHelper {
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	public <F extends android.app.Fragment> void setTypeface(F fragment, String typefaceName) {
 		setTypeface(fragment, typefaceName, 0);
+	}
+
+	/**
+	 * Set the typeface to the all text views belong to the fragment.
+	 * Make sure to call this method after fragment view creation.
+	 * If you use fragments in the support package,
+	 * call {@link com.drivemode.android.typeface.TypefaceHelper#supportSetTypeface(android.support.v4.app.Fragment, String)} instead.
+	 * @param fragment the fragment.
+	 * @param strResId string resource containing typeface name.
+	 */
+	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
+	public <F extends android.app.Fragment> void setTypeface(F fragment, @StringRes int strResId) {
+		setTypeface(fragment, mApplication.getString(strResId));
 	}
 
 	/**
@@ -249,12 +387,37 @@ public final class TypefaceHelper {
 	/**
 	 * Set the typeface to the all text views belong to the fragment.
 	 * Make sure to call this method after fragment view creation.
+	 * If you use fragments in the support package,
+	 * call {@link com.drivemode.android.typeface.TypefaceHelper#supportSetTypeface(android.support.v4.app.Fragment, String, int)} instead.
+	 * @param fragment the fragment.
+	 * @param strResId string resource containing typeface name.
+	 * @param style the typeface style.
+	 */
+	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
+	public <F extends android.app.Fragment> void setTypeface(F fragment, @StringRes int strResId, int style) {
+		setTypeface(fragment, mApplication.getString(strResId), style);
+	}
+
+	/**
+	 * Set the typeface to the all text views belong to the fragment.
+	 * Make sure to call this method after fragment view creation.
 	 * And this is a support package fragments only.
 	 * @param fragment the fragment.
 	 * @param typefaceName typeface name.
 	 */
 	public <F extends android.support.v4.app.Fragment> void supportSetTypeface(F fragment, String typefaceName) {
 		supportSetTypeface(fragment, typefaceName, 0);
+	}
+
+	/**
+	 * Set the typeface to the all text views belong to the fragment.
+	 * Make sure to call this method after fragment view creation.
+	 * And this is a support package fragments only.
+	 * @param fragment the fragment.
+	 * @param strResId string resource containing typeface name.
+	 */
+	public <F extends android.support.v4.app.Fragment> void supportSetTypeface(F fragment, @StringRes int strResId) {
+		supportSetTypeface(fragment, mApplication.getString(strResId));
 	}
 
 	/**
@@ -275,6 +438,18 @@ public final class TypefaceHelper {
 	}
 
 	/**
+	 * Set the typeface to the all text views belong to the fragment.
+	 * Make sure to call this method after fragment view creation.
+	 * And this is a support package fragments only.
+	 * @param fragment the fragment.
+	 * @param strResId string resource containing typeface name.
+	 * @param style the typeface style.
+	 */
+	public <F extends android.support.v4.app.Fragment> void supportSetTypeface(F fragment, @StringRes int strResId, int style) {
+		supportSetTypeface(fragment, mApplication.getString(strResId), style);
+	}
+
+	/**
 	 * Set the typeface for the dialog view.
 	 * @param dialog the dialog.
 	 * @param typefaceName typeface name.
@@ -286,11 +461,30 @@ public final class TypefaceHelper {
 	/**
 	 * Set the typeface for the dialog view.
 	 * @param dialog the dialog.
+	 * @param strResId string resource containing typeface name.
+	 */
+	public <D extends Dialog> void setTypeface(D dialog, @StringRes int strResId) {
+		setTypeface(dialog, mApplication.getString(strResId));
+	}
+
+	/**
+	 * Set the typeface for the dialog view.
+	 * @param dialog the dialog.
 	 * @param typefaceName typeface name.
 	 * @param style the typeface style.
 	 */
 	public <D extends Dialog> void setTypeface(D dialog, String typefaceName, int style) {
 		DialogUtils.setTypeface(this, dialog, typefaceName, style);
+	}
+
+	/**
+	 * Set the typeface for the dialog view.
+	 * @param dialog the dialog.
+	 * @param strResId string resource containing typeface name.
+	 * @param style the typeface style.
+	 */
+	public <D extends Dialog> void setTypeface(D dialog, @StringRes int strResId, int style) {
+		setTypeface(dialog, mApplication.getString(strResId), style);
 	}
 
 	/**
@@ -306,6 +500,16 @@ public final class TypefaceHelper {
 	/**
 	 * Set the typeface for the toast view.
 	 * @param toast toast.
+	 * @param strResId string resource containing typeface name.
+	 * @return toast that the typeface is injected.
+	 */
+	public Toast setTypeface(Toast toast, @StringRes int strResId) {
+		return setTypeface(toast, mApplication.getString(strResId));
+	}
+
+	/**
+	 * Set the typeface for the toast view.
+	 * @param toast toast.
 	 * @param typefaceName typeface name.
 	 * @param style the typeface style.
 	 * @return toast that the typeface is injected.
@@ -313,5 +517,16 @@ public final class TypefaceHelper {
 	public Toast setTypeface(Toast toast, String typefaceName, int style) {
 		setTypeface((ViewGroup) toast.getView(), typefaceName, style);
 		return toast;
+	}
+
+	/**
+	 * Set the typeface for the toast view.
+	 * @param toast toast.
+	 * @param strResId string resource containing typeface name.
+	 * @param style the typeface style.
+	 * @return toast that the typeface is injected.
+	 */
+	public Toast setTypeface(Toast toast, @StringRes int strResId, int style) {
+		return setTypeface(toast, mApplication.getString(strResId), style);
 	}
 }
