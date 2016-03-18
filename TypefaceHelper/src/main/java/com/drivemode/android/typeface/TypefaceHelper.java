@@ -65,6 +65,15 @@ public final class TypefaceHelper {
 		}
 		return sHelper;
 	}
+    
+	/**
+	 * Fetches font instance from TypefaceCache
+	 * @param typefaceName typeface name.
+	 * @return requested typeface
+	 */
+	public Typeface getTypeface(String typefaceName){
+		return mCache.get(typefaceName);
+	}
 
 	/**
 	 * Set the typeface to the target view.
