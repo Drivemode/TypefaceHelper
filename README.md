@@ -115,7 +115,7 @@ public class MyActivity extends Activity {
 Gradle:
 
 ```
-compile 'com.drivemode:TypefaceHelper:1.0.0@aar'
+compile 'com.drivemode:TypefaceHelper:1.2.0@aar'
 ```
 
 ## License
